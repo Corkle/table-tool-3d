@@ -1,0 +1,26 @@
+{:source-paths
+ ["src"]
+
+ :dependencies
+ [[reagent "0.8.1"]
+  [re-frame "0.10.6"]]
+
+ :builds
+ {:app {:target :browser
+        :output-dir "public/js"
+        :asset-path "/js"
+        
+        :modules
+        {:main
+         {:entries [app.core]}}
+
+        :devtools
+        {:after-load app.core/reload!
+         :http-root "public"
+         :http-port 3000
+         :devtools-url "https://dev0.corkbits.com"}
+        
+        :release
+        {:output-dir "dist/js"}
+        
+        }}}

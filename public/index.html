@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+  <head>
+    <title>CLJS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style type="text/css">
+      html {
+        overflow-y: hidden;
+      }
+      body {
+        height: 100vh;
+        background-color: #242424;
+      }
+      body::-webkit-scrollbar {
+        display: none; 
+      }
+      #app-loading {
+        font-size: 2rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      #left-nav {
+        position: absolute; 
+        height: 100%;
+        padding: 10px 0px;
+        display: flex;
+        flex-direction: column;
+        width: 80px;
+        /*border: 2px solid #CC0000;*/
+      }
+      .left-nav-item {
+        position: relative; 
+        display: inline-block;
+        margin: 15px 0px;
+        text-align: center;
+       /* border: 2px solid #00CC00; */
+      }
+      .nav-icon {
+        color: #FF7519;
+      }
+
+      #menus-overlay {
+        position: absolute; 
+        z-index 100;
+        height: 100%;
+        width: 100%;
+        pointer-events: none;
+      }
+      .menu-container {
+        position: absolute;
+        background-color: #00A9B2;
+        /*border: 2px solid #919191;*/
+        border: 2px outset #00A9B2;
+        border-radius: 3px;
+        pointer-events: auto;
+        -webkit-user-select: none;
+        -mox-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      .menu-title-bar {
+        padding: 3px 5px;
+        font-weight: bold;
+        color: #EEEEEE;
+      }
+      .menu-contents {
+        background-color: #EEEEEE;
+        padding: 5px 10px;
+        border-radius: 0px 0px 3px 3px;
+      }
+
+/*      .left-nav-item .mouseover-menu {
+        position: absolute;
+        margin-top: -10px;
+        padding: 10px;
+        top: 0;
+        left: 100%;
+        visibility: hidden;
+      }
+      .left-nav-item:hover .mouseover-menu {
+        visibility: visible; 
+      }
+      .mouseover-menu .submenu {
+        background-color: #DDDDFF;
+        border: 2px solid #919191;
+        padding: 5px 10px;
+        -webkit-user-select: none;
+        -mox-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      .submenu > a {
+        display: block; 
+        width: 100%;
+        white-space: nowrap;
+        text-align: left;
+      }
+*/
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <p id="app-loading">loading...</p> 
+    </div>
+    <script src="/js/main.js"></script> 
+    <script>app.core.init()</script>
+  </body>
+</html>
