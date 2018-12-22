@@ -16,6 +16,16 @@
     (assoc-in db [:window :current-panel] panel)))
 
 (reg-event-db
+  :window/close-menu
+  (fn [db [_ menu-id]]
+    (assoc-in db [:window :menus menu-id :visible?] false)))
+
+(reg-event-db
+  :window/toggle-menu-visible
+  (fn [db [_ menu-id]]
+    (update-in db [:window :menus menu-id :visible?] not)))
+
+(reg-event-db
   :window/update-menu-position
   (fn [db [_ menu-id [x y]]]
     (let [menu (get-in db [:window :menus menu-id])

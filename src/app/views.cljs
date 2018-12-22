@@ -21,6 +21,16 @@
         shift-y (- (.-clientY event) (.-top rect))]
     [shift-x shift-y]))
 
+(defn- players-menu-content
+  []
+  [:div.menu-contents
+   [:div
+    [:a
+     [:span "New player"]]]
+   [:div
+    [:a
+     [:span "Open player list"]]]])
+
 (defn- players-menu
   []
   (let [ui (<sub [:window/players-menu])
@@ -34,15 +44,14 @@
       {:on-mouse-down #(>evt [:window/draggable-menu-mouse-down :players-menu (get-drag-offset %)])
        :on-mouse-up #(>evt [:window/draggable-menu-mouse-up :players-menu])}
       "Players"]
-     [:div.menu-contents
-      [:a 
-       [:span "New player"]]
-      [:a
-       [:span "Open player list"]]]]))
+     [:a.menu-close-button {:on-click #(>evt [:window/close-menu :players-menu])}
+      [:span.icon
+       [:i.fas.fa-times]]]
+     [players-menu-content]]))
 
 (defn- nav-icon
-  [icon-class text]
-  [:a.nav-icon
+  [icon-class text on-click-fn]
+  [:a.nav-icon {:on-click on-click-fn}
    [:span.icon.is-large
     [:i.fas.fa-2x {:class icon-class}]]
    [:span {:style {:display "block"}} text]])
@@ -50,7 +59,7 @@
 (defn- left-nav-players
   []
   [:div.left-nav-item
-   [nav-icon "fa-users" "Players"]])
+   [nav-icon "fa-users" "Players" #(>evt [:window/toggle-menu-visible :players-menu])]])
 
 (defn- left-nav-monsters
   []
