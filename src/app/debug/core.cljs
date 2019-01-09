@@ -9,15 +9,21 @@
 (defn- debug-panel
   []
   (let [db (<sub [:debug/db-state])]
-    [:div.notification {:style {:width "100%"}}
+    [:div.notification {:style {:width "100%"
+                                :max-height 300
+                                :overflow "scroll"}}
      [:button {:on-click #(>evt [:debug/hide "debug"])
                :style {:margin 5
                        :top 0
                        :right 0
                        :position "absolute"}}
       "-"]
-     [:button {:on-click #(>evt [:debug/add-cube])}
-      "Add Cube"]
+     [:button {:on-click #(>evt [:debug/set-selector []])}
+      ":db"]
+     [:button {:on-click #(>evt [:debug/set-selector [:window :menus :tokens-menu]])}
+      ":token-menu"]
+     [:button {:on-click #(>evt [:debug/set-selector [:webgl]])}
+      ":webgl"]
      [:pre (with-out-str (pprint db))]]))
 
 (defn- debug-hidden
@@ -37,7 +43,9 @@
 (rf/reg-sub
   :debug/db-state
   (fn [db _]
-    db))
+    (let [db-selector (get-in db [:debug :db-selector])
+          debug-db (get-in db db-selector)]
+      debug-db)))
 
 (rf/reg-fx
   :mount-debug-panel
@@ -60,7 +68,6 @@
     {:hide-debug-panel id}))
 
 (rf/reg-event-db
-  :debug/add-cube
-  (fn [db _]
-    (assoc db :cube {:pos [0 0 0]})))
-
+  :debug/set-selector
+  (fn [db [_ selector]]
+    (assoc-in db [:debug :db-selector] selector)))
