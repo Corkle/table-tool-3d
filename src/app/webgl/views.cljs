@@ -23,13 +23,7 @@
 (defn webgl-component
   []
   (let [visible? (<sub [:webgl/visible?])]
-    [:div#webgl {:style {:position "absolute"
-                         :background-color "#242424"
-                         :top 0
-                         :left 0 
-                         :padding-left 80
-                         :width "100%"
-                         :height "100%"}}
+    [:div#webgl
      (if-not visible?
        [:div {:style {:display "flex"
                       :justify-content "center"

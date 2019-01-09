@@ -22,32 +22,55 @@
         left: 50%;
         transform: translate(-50%, -50%);
       }
+      #webgl {
+        position: absolute;
+        background-color: #242424;
+        top: 0;
+        left: 0;
+        margin-left: 90px;
+        width: 100%;
+        height: 100%;
+      }
       #left-nav {
         position: absolute; 
         height: 100%;
         padding: 10px 0px;
         display: flex;
         flex-direction: column;
-        width: 80px;
-        /*border: 2px solid #CC0000;*/
+        width: 90px;
       }
       .left-nav-item {
         position: relative; 
         display: inline-block;
         margin: 15px 0px;
         text-align: center;
-       /* border: 2px solid #00CC00; */
-      }
-      .nav-icon {
         color: #BBBBBB;
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
       }
-      .nav-icon:hover {
+      .left-nav-item:hover {
+        -webkit-transform: translate(3px);
+        transform: translateY(3px);
         color: #FF7519;
       }
+      .left-nav-item .nav-text {
+        opacity: 0;
+        transition: opacity 0.5s;
+      }
+      .show-text .nav-text{
+        opacity: 1;
+      }
 
+      #drag-overlay {
+        position: absolute;
+        z-index: 900;
+        height: 100%;
+        width: 100%;
+        pointer-events: none;
+      }
       #menus-overlay {
         position: absolute; 
-        z-index 100;
+        z-index: 600;
         height: 100%;
         width: 100%;
         pointer-events: none;
@@ -55,8 +78,7 @@
       .menu-container {
         position: absolute;
         background-color: #00A9B2;
-        /*border: 2px solid #919191;*/
-        border: 2px outset #00A9B2;
+        border: 2px outset #009199;
         border-radius: 3px;
         pointer-events: auto;
         -webkit-user-select: none;
@@ -84,6 +106,14 @@
       .menu-close-button:hover {
         border: 1px outset #CCCCCC;
         color: #EEEEEE;
+      }
+      .token-list-item.selected {
+        background-color: #B8DCEB;
+        border: 2px #00A9B2 solid;
+        border-radius: 5px;
+      }
+      .token-list-item.dragging {
+        opacity: 0.3;
       }
     </style>
   </head>
